@@ -3,389 +3,328 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeWithSagor | Decoding Intelligence</title>
-    <link rel="icon" type="image/png" href="./images/logo.png">
-    <link rel="stylesheet" href="style.css">
+    <title>Code With Sagor | Decoding Intelligence</title>
+    <link rel="website icon" href="./images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Header / Navigation -->
-    <header class="header">
-        <nav class="navbar container">
-            <div class="logo-container">
-                <img src="./images/logo.png" alt="Code With Sagor Logo" class="logo">
-                <span class="brand-name">Code With Sagor</span>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                Code With <span>Sagor</span>
+                <div class="slogan code-font">// Decoding Intelligence</div>
             </div>
             
-            <div class="nav-links" id="navLinks">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#why-us" class="nav-link">Why Us</a>
-                <a href="#social" class="nav-link">Social</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
-            </button>
-        </nav>
+            </div>
+            
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#learn">Learn</a></li>
+                    <li><a href="#social">YouTube & Facebook</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#why">Why Learn</a></li>
+                    <li><a href="#contact">Connect</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero section" id="home">
-        <div class="hero-background"></div>
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div id="particles-js"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="gradient-text">Code With Sagor</span>
-                        <span class="tagline">Decoding Intelligence</span>
-                        <span class="animated-text">
-                            <span class="text-word">Simple</span>
-                            <span class="text-word">Easy</span>
-                            <span class="text-word">Fun</span>
-                            <span class="text-word">Accessible</span>
-                        </span>
-                        <span class="tagline">For Everyone</span>
-                    </h1>
-                    
-                    <div class="typing-container">
-                        <p class="typing-label">Learn</p>
-                        <div class="typing-text">
-                            <span id="typing">HTML, CSS & JavaScript</span>
-                            <span class="cursor">|</span>
-                        </div>
-                    </div>
-                    
-                    <p class="hero-description">
-                        Beginner-friendly programming tutorials, practical examples, and free quality content. 
-                        Start your coding journey today with easy-to-follow lessons that make complex concepts simple.
-                    </p>
-                    
-                    <div class="cta-buttons">
-                        <a href="https://www.youtube.com/@codewithsagorcw" target="_blank" class="btn btn-youtube">
-                            <i class="fab fa-youtube"></i>
-                            <span>Subscribe on YouTube</span>
-                        </a>
-                        <a href="https://www.facebook.com/codewithsagor/" target="_blank" class="btn btn-facebook">
-                            <i class="fab fa-facebook-f"></i>
-                            <span>Follow on Facebook</span>
-                        </a>
-                    </div>
-                    
-                    <div class="hero-stats">
-                        <div class="stat">
-                            <div class="stat-number">100+</div>
-                            <div class="stat-label">Free Tutorials</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">5K+</div>
-                            <div class="stat-label">Students</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">2</div>
-                            <div class="stat-label">Platforms</div>
-                        </div>
-                    </div>
+                <h1>Learn to Code with <span class="typing-text" id="typing-text"></span></h1>
+                <p>Welcome to <strong>Code With Sagor</strong> – your beginner-friendly gateway to programming. Start your coding journey with Python explained in simple, easy-to-understand language. No prior experience needed.</p>
+                <div class="hero-btns">
+                    <a href="#social" class="btn btn-primary"><i class="fab fa-youtube"></i> Visit YouTube Channel</a>
+                    <a href="#social" class="btn btn-outline"><i class="fab fa-facebook"></i> Follow on Facebook</a>
                 </div>
-                
-                <div class="hero-visual">
-                    <div class="code-window">
-                        <div class="window-header">
-                            <div class="window-dots">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <span class="window-title">demo.js</span>
-                        </div>
-                        <div class="window-content">
-<pre><code><span class="code-comment">// Welcome to Code With Sagor</span>
-<span class="code-keyword">function</span> <span class="code-function">learnProgramming</span>() {
-    <span class="code-keyword">const</span> topics = [
-        <span class="code-string">"Web Development"</span>,
-        <span class="code-string">"JavaScript Basics"</span>,
-        <span class="code-string">"HTML & CSS"</span>,
-        <span class="code-string">"React.js"</span>,
-        <span class="code-string">"Python"</span>
-    ];
-    
-    topics.<span class="code-function">forEach</span>(topic => {
-        console.<span class="code-function">log</span>(<span class="code-string">`📚 Learning: ${topic}`</span>);
-        console.<span class="code-function">log</span>(<span class="code-string">"✅ Beginner Friendly"</span>);
-        console.<span class="code-function">log</span>(<span class="code-string">"🎯 Practical Examples"</span>);
-    });
-    
-    <span class="code-keyword">return</span> <span class="code-string">"🚀 Start Coding Today!"</span>;
-}
-
-<span class="code-comment">// Start learning journey</span>
-<span class="code-keyword">const</span> result = <span class="code-function">learnProgramming</span>();
-console.<span class="code-function">log</span>(result);</code></pre>
-                        </div>
-                    </div>
-                    
-                    <div class="floating-icons">
-                        <div class="icon html">
-                            <i class="fab fa-html5"></i>
-                        </div>
-                        <div class="icon css">
-                            <i class="fab fa-css3-alt"></i>
-                        </div>
-                        <div class="icon js">
-                            <i class="fab fa-js"></i>
-                        </div>
-                        <div class="icon python">
-                            <i class="fab fa-python"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="scroll-indicator">
-                <div class="mouse">
-                    <div class="wheel"></div>
-                </div>
-                <span>Scroll to explore</span>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about section" id="about">
+    <section id="about" class="reveal">
         <div class="container">
-            <h2 class="section-title">About <span class="highlight">Code With Sagor</span></h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p><strong>Code With Sagor</strong> is a tech education brand dedicated to making programming accessible to everyone. We believe that learning to code should be straightforward, engaging, and free from unnecessary complexity.</p>
-                    <p>Our tutorials break down complex topics into simple, easy-to-understand lessons that anyone can follow, regardless of their background or experience level.</p>
-                    <p>Through our YouTube channel and Facebook page, we provide quality content that helps you learn at your own pace, with practical examples and real-world applications.</p>
+                    <h2>About Code With Sagor</h2>
+                    <p><strong>Code With Sagor</strong> is a personal initiative to make programming accessible to everyone, especially absolute beginners. My mission is to break down complex programming concepts into simple, digestible lessons that anyone can understand and apply.</p>
+                    <p>I believe that coding is not just for computer scientists – it's a skill that can empower anyone to solve problems, create solutions, and shape the future.</p>
+                    
+                    <div class="mission-vision">
+                        <div class="mission-card">
+                            <h3><i class="fas fa-bullseye"></i> Mission</h3>
+                            <p>Teaching programming from absolute zero with crystal clear explanations, focusing on practical understanding over theoretical jargon.</p>
+                        </div>
+                        <div class="vision-card">
+                            <h3><i class="fas fa-eye"></i> Vision</h3>
+                            <p>Creating a learning path that grows from Python basics → Programming fundamentals → Problem solving → AI & Machine Learning.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-card">
-                        <div class="stat-number" data-count="100">0</div>
-                        <div class="stat-label">Tutorials</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-count="5000">0</div>
-                        <div class="stat-label">Students</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-count="2">0</div>
-                        <div class="stat-label">Platforms</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-count="100">0</div>
-                        <div class="stat-label">% Free</div>
+                
+                <div class="about-image">
+                    <div class="mission-card">
+                        <h3><i class="fas fa-graduation-cap"></i> My Teaching Philosophy</h3>
+                        <p>1. <strong>Start Simple</strong>: No assumptions about prior knowledge</p>
+                        <p>2. <strong>Explain Clearly</strong>: Complex concepts in everyday language</p>
+                        <p>3. <strong>Practice Focused</strong>: Learn by building real projects</p>
+                        <p>4. <strong>Progress Gradually</strong>: Step-by-step advancement path</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services section" id="services">
+    <!-- What You Will Learn Section -->
+    <section id="learn" class="reveal">
         <div class="container">
-            <h2 class="section-title">What We <span class="highlight">Teach</span></h2>
-            <p class="section-subtitle">Comprehensive tech education for beginners and beyond</p>
+            <h2 class="section-title-center">What You Will Learn</h2>
             
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="service-title">Programming Basics</h3>
-                    <p class="service-desc">Learn fundamental programming concepts, logic building, and problem-solving skills from scratch.</p>
+            <div class="learn-cards">
+                <div class="learn-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python for Beginners</h3>
+                    <p>Start with Python - the most beginner-friendly programming language. Learn syntax, data types, functions, and basic programming concepts.</p>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="service-title">Web Development</h3>
-                    <p class="service-desc">Master front-end and back-end web development to build modern, responsive websites.</p>
+                <div class="learn-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Programming Fundamentals</h3>
+                    <p>Master core programming concepts: variables, loops, conditionals, data structures, algorithms, and problem-solving approaches.</p>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <h3 class="service-title">HTML, CSS, JavaScript</h3>
-                    <p class="service-desc">Dive deep into core web technologies with practical examples and real projects.</p>
+                <div class="learn-card">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <h3>Problem Solving</h3>
+                    <p>Develop the programmer's mindset - breaking down complex problems into smaller, manageable parts and creating efficient solutions.</p>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 class="service-title">Coding Tips & Tricks</h3>
-                    <p class="service-desc">Get practical coding tips, best practices, and step-by-step tutorials for real challenges.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 class="service-title">Easy Tech Education</h3>
-                    <p class="service-desc">Technology concepts explained in simple language with practical examples anyone can understand.</p>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="service-title">Project-Based Learning</h3>
-                    <p class="service-desc">Build real projects as you learn, applying concepts immediately to reinforce understanding.</p>
+                <div class="learn-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Future: AI & Machine Learning</h3>
+                    <p>Once fundamentals are solid, transition to exciting fields like Artificial Intelligence, Machine Learning, and Data Science.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="why-us section" id="why-us">
+    <!-- YouTube & Facebook Section -->
+    <section id="social" class="reveal">
         <div class="container">
-            <h2 class="section-title">Why Choose <span class="highlight">Code With Sagor</span></h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
+            <h2 class="section-title-center">Follow My Content</h2>
+            
+            <div class="social-platforms">
+                <div class="platform-card">
+                    <h3><i class="fab fa-youtube" style="color: #FF0000;"></i> YouTube Channel</h3>
+                    <p>Subscribe to my YouTube channel for video tutorials, coding walkthroughs, and programming concepts explained visually.</p>
+                    
+                    <div class="video-container">
+                        <!-- YouTube Video Placeholder -->
+                        <div style="background-color: #1A1A2E; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <div style="text-align: center;">
+                                <i class="fab fa-youtube" style="font-size: 3rem; color: #FF0000; margin-bottom: 1rem;"></i>
+                                <p>YouTube videos will be embedded here</p>
+                                <p>Subscribe for Python tutorials!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-primary" style="margin-top: 20px; width: 100%;"><i class="fab fa-youtube"></i> Subscribe Now</a>
+                </div>
+                
+                <div class="platform-card">
+                    <h3><i class="fab fa-facebook" style="color: #1877F2;"></i> Facebook Page</h3>
+                    <p>Follow my Facebook page for daily coding tips, programming resources, and community updates. Join the learning community!</p>
+                    
+                    <div class="facebook-link">
+                        <i class="fab fa-facebook"></i>
+                        <div>
+                            <h4>Code With Sagor</h4>
+                            <p>Follow for programming content & updates</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-outline" style="margin-top: 20px; width: 100%;"><i class="fab fa-facebook"></i> Follow Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog & Notes Section -->
+    <section id="blog" class="reveal">
+        <div class="container">
+            <h2 class="section-title-center">Blog & Notes</h2>
+            
+            <div class="blog-placeholder">
+                <i class="fas fa-blog"></i>
+                <h3>Content Coming Soon</h3>
+                <p>I'm preparing valuable programming tutorials, coding tips, and learning resources that will be published here soon.</p>
+                <p>This section will include detailed articles, cheat sheets, and practical notes to help you on your coding journey.</p>
+                <p>Stay tuned for updates!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Learn With Me Section -->
+    <section id="why" class="reveal">
+        <div class="container">
+            <h2 class="section-title-center">Why Learn With Me</h2>
+            
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="benefit-icon">
                         <i class="fas fa-user-graduate"></i>
                     </div>
-                    <h3 class="feature-title">Beginner-Friendly</h3>
-                    <p class="feature-desc">No prior experience needed. We start from basics and gradually build up to advanced topics.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands-helping"></i>
+                    <div>
+                        <h3>Beginner-Friendly Approach</h3>
+                        <p>I start from absolute basics with zero assumptions about your prior knowledge. Every concept is explained from the ground up.</p>
                     </div>
-                    <h3 class="feature-title">Practical Examples</h3>
-                    <p class="feature-desc">Every concept is taught with real-world examples you can use immediately in your projects.</p>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
+                <div class="benefit">
+                    <div class="benefit-icon">
                         <i class="fas fa-comments"></i>
                     </div>
-                    <h3 class="feature-title">Simple Language</h3>
-                    <p class="feature-desc">Complex technical jargon is translated into simple, everyday language that's easy to understand.</p>
+                    <div>
+                        <h3>Simple Language</h3>
+                        <p>No complex jargon or confusing terminology. I explain programming concepts in everyday language that's easy to understand.</p>
+                    </div>
                 </div>
                 
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gift"></i>
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fas fa-code"></i>
                     </div>
-                    <h3 class="feature-title">Free Quality Content</h3>
-                    <p class="feature-desc">Access all our tutorials for free. Quality education should be accessible to everyone.</p>
+                    <div>
+                        <h3>Practical Coding Mindset</h3>
+                        <p>Focus on practical application over theory. Learn by building real projects that reinforce your understanding.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <div>
+                        <h3>Clear Learning Path</h3>
+                        <p>Structured curriculum that takes you from Python basics to advanced topics, with a clear roadmap for your progress.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <div>
+                        <h3>Supportive Community</h3>
+                        <p>Join other beginners on the same journey. Ask questions, share progress, and learn together in a supportive environment.</p>
+                    </div>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div>
+                        <h3>Future-Ready Skills</h3>
+                        <p>Learn skills that prepare you for the future, with a pathway to AI and Machine Learning once you master the fundamentals.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Social Media Section -->
-    <section class="social section" id="social">
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
         <div class="container">
-            <h2 class="section-title">Connect With <span class="highlight">Us</span></h2>
-            <p class="section-subtitle">Join our community for daily programming tips and tutorials</p>
+            <h2 class="section-title-center">Connect With Me</h2>
             
-            <div class="social-grid">
-                <div class="social-card youtube">
-                    <div class="social-icon">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3 class="social-title">YouTube Channel</h3>
-                    <p class="social-desc">Subscribe to our YouTube channel for video tutorials, coding walkthroughs, and tech explanations.</p>
-                    <a href="https://www.youtube.com/@codewithsagorcw/" target="_blank" class="social-btn">
-                        <i class="fab fa-youtube"></i>
-                        <span>Subscribe Now</span>
-                    </a>
-                    <div class="social-stats">
-                        <div class="stat">
-                            <i class="fas fa-play-circle"></i>
-                            <span>1+ Tutorials</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-users"></i>
-                            <span>5+ Subscribers</span>
-                        </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Let's Learn Together</h3>
+                    <p>Have questions about learning to code? Want to suggest a tutorial topic? Feel free to reach out!</p>
+                    <p>I'm here to help you on your programming journey and create content that addresses your learning needs.</p>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
                 
-                <div class="social-card facebook">
-                    <div class="social-icon">
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                    <h3 class="social-title">Facebook Page</h3>
-                    <p class="social-desc">Follow our Facebook page for coding tips, tech news, and community discussions.</p>
-                    <a href="https://www.facebook.com/codewithsagor" target="_blank" class="social-btn">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>Follow Now</span>
-                    </a>
-                    <div class="social-stats">
-                        <div class="stat">
-                            <i class="fas fa-thumbs-up"></i>
-                            <span>10+ Followers</span>
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
                         </div>
-                        <div class="stat">
-                            <i class="fas fa-comments"></i>
-                            <span>Active Community</span>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
                         </div>
-                    </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="What would you like to ask or suggest?"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="reveal">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <div class="footer-logo">
-                        <img src="./images/logo.png" alt="Code With Sagor Logo" class="logo">
-                        <h3>Code With Sagor</h3>
-                    </div>
-                    <p class="footer-quote">
-                        "The beautiful thing about learning is that no one can take it away from you."
-                    </p>
+                    <div class="footer-logo">Code With <span>Sagor</span></div>
+                    <div class="footer-slogan code-font">// Decoding Intelligence</div>
+                    <p>Beginner-friendly programming education platform focusing on Python, with a vision to expand into AI & Machine Learning.</p>
                 </div>
                 
                 <div class="footer-links">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <a href="#home" class="footer-link">Home</a>
-                    <a href="#about" class="footer-link">About</a>
-                    <a href="#services" class="footer-link">Services</a>
-                    <a href="#why-us" class="footer-link">Why Choose Us</a>
-                    <a href="#social" class="footer-link">Social</a>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#learn">What You'll Learn</a></li>
+                        <li><a href="#social">YouTube & Facebook</a></li>
+                        <li><a href="#why">Why Learn With Me</a></li>
+                        <li><a href="#contact">Connect</a></li>
+                    </ul>
                 </div>
                 
                 <div class="footer-contact">
-                    <h4 class="footer-title">Contact</h4>
-                    <p class="contact-info">
-                        <i class="fas fa-envelope"></i>
-                        <span>contactsahariar@gmail.com</span> <br><br> 
-                    </p>
-                    <div class="social-icons">
-                        <a href="https://www.youtube.com/@codewithsagorcw/" target="_blank" class="social-icon">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="https://www.facebook.com/codewithsagor/" target="_blank" class="social-icon">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.github.com/sahariarsagor/" target="_blank" class="social-icon">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/sahariarsagor/" target="_blank" class="social-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                    </div>
+                    <h4>Learning Path</h4>
+                    <ul>
+                        <li>Python Basics</li>
+                        <li>Programming Fundamentals</li>
+                        <li>Problem Solving Skills</li>
+                        <li>Future: AI & ML</li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Code With Sagor. All rights reserved.</p>
-                <p>Making programming accessible to everyone.</p>
+            <div class="copyright">
+                <p>&copy; <span id="currentYear"></span> Code With Sagor. All Rights Reserved. | Designed for absolute beginners.</p>
             </div>
         </div>
     </footer>
