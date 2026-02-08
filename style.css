@@ -679,7 +679,7 @@
             }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 480px) {
             .logo{
                 font-size: 1.3rem;
             }
