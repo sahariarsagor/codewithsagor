@@ -1,6 +1,6 @@
  // Typing Animation
         const typingText = document.getElementById('typing-text');
-        const texts = ['Python', 'Programming', 'AI', 'Machine Learning', 'Code'];
+        const texts = ['Programming', 'Python', 'Javascript','Java', 'SQL','Web Development', 'Artificial Intelligence', 'Machine Learning', 'Data Science', 'Probelm Solving', 'Real Project'];
         let textIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -12,11 +12,11 @@
             if (isDeleting) {
                 typingText.textContent = currentText.substring(0, charIndex - 1);
                 charIndex--;
-                typingSpeed = 50;
+                typingSpeed = 70;
             } else {
                 typingText.textContent = currentText.substring(0, charIndex + 1);
                 charIndex++;
-                typingSpeed = 100;
+                typingSpeed = 120 ;
             }
             
             if (!isDeleting && charIndex === currentText.length) {

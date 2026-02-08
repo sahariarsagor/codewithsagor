@@ -679,19 +679,19 @@
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 576px) {
             .logo{
-                font-size: 1.3rem;
+                font-size: 1.09999rem;
             }
 
             #slogan{
-                font-size: 0.8rem;
+                font-size: 0.7rem;
             }
             #BrandName{
-                font-size: 3rem;
+                font-size: 2.5rem;
             }
             h1 {
-                font-size: 2rem;
+                font-size: 1.3rem;
             }
             
             h2 {
