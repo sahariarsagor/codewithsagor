@@ -57,8 +57,13 @@
             margin-bottom: 1.5rem;
         }
 
+        #BrandName{
+            font-size: 5rem;
+            color: orange;
+        }
+
         h1 {
-            font-size: 3.5rem;
+            font-size: 3rem;
         }
 
         h2 {
@@ -616,6 +621,12 @@
         }
 
         @media (max-width: 768px) {
+            #BrandName{
+                font-size: 3rem;
+            }
+            h1{
+                font-size: 2rem;
+            }
             .nav-links {
                 position: fixed;
                 top: var(--header-height);
@@ -660,8 +671,11 @@
         }
 
         @media (max-width: 576px) {
+            #BrandName{
+                font-size: 3rem;
+            }
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             h2 {
