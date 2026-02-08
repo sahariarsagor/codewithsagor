@@ -624,6 +624,15 @@
             #BrandName{
                 font-size: 3rem;
             }
+
+            .logo{
+                font-size: 1.3rem;
+            }
+
+            #slogan{
+                font-size: 0.8rem;
+            }
+
             h1{
                 font-size: 2rem;
             }
@@ -671,6 +680,13 @@
         }
 
         @media (max-width: 576px) {
+            .logo{
+                font-size: 1.3rem;
+            }
+
+            #slogan{
+                font-size: 0.8rem;
+            }
             #BrandName{
                 font-size: 3rem;
             }
