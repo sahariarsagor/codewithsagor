@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeWithSagor | Notes Hub</title>
+    <!-- Font Awesome 6 (icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Space Grotesk + Inter (premium typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="website icon" href="./logo.png">
+    <style>
+        /* ---------- RESET & GLOBAL ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b0e14;
+            background-image: radial-gradient(circle at 30% 40%, rgba(0, 180, 255, 0.08) 0%, transparent 35%),
+                              radial-gradient(circle at 80% 70%, rgba(170, 0, 255, 0.06) 0%, transparent 45%);
+            font-family: 'Inter', sans-serif;
+            color: #eef4ff;
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* smooth scroll + loading overlay */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ---------- LOADING SCREEN ---------- */
+        #loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: #0a0c12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s;
+        }
+        .loader {
+            width: 70px;
+            height: 70px;
+            border: 4px solid rgba(0, 200, 255, 0.2);
+            border-top: 4px solid #00ccff;
+            border-right: 4px solid #aa80ff;
+            border-radius: 50%;
+            animation: spin 1.2s cubic-bezier(0.6, 0.2, 0.3, 0.8) infinite;
+            box-shadow: 0 0 30px #006eff70;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ---------- FLOATING BACK BUTTON (fixed left bottom) & SCROLL TOP ---------- */
+        .float-back {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 999;
+        }
+        .float-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+        .neo-btn {
+            background: rgba(12, 22, 36, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            padding: 14px 24px;
+            border-radius: 60px;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 10px 25px -5px #00000080, 0 0 20px #0055ff40;
+            transition: 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+        }
+        .float-top .neo-btn {
+            padding: 14px 22px;
+            border-radius: 40px;
+        }
+        .neo-btn i { font-size: 1.1rem; }
+        .neo-btn:hover {
+            background: #122b4a;
+            border-color: #3ec3ff;
+            box-shadow: 0 0 28px #0080ff, 0 5px 15px #000;
+            transform: scale(1.05);
+        }
+
+        /* ---------- STICKY NAVBAR (glass) ---------- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 15, 26, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(80, 160, 255, 0.2);
+            box-shadow: 0 10px 30px -10px #00000080;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 1.6rem;
+            background: linear-gradient(145deg, #fff, #b0d0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logo-icon {
+            font-size: 2.2rem;
+            background: none;
+            -webkit-text-fill-color: #38b6ff;
+            filter: drop-shadow(0 0 8px cyan);
+        }
+        .portfolio-btn {
+            background: rgba(10, 25, 45, 0.6);
+            border: 1px solid #3b82f680;
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            color: white;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(12px);
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .portfolio-btn:hover {
+            background: #1e3b66;
+            border-color: #5aa9ff;
+            box-shadow: 0 0 22px #0077ff;
+        }
+
+        /* ---------- HERO + BACKGROUND BLOBS ---------- */
+        .hero {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            isolation: isolate;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 8vw, 5.2rem);
+            font-weight: 700;
+            background: linear-gradient(130deg, #ffffff, #b0d5ff, #b38eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 20px #0026ff50);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            color: #b2d0f0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .particle-blob {
+            position: absolute;
+            width: 90%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(80, 160, 255, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(200, 130, 250, 0.12) 0%, transparent 70%);
+            filter: blur(70px);
+            z-index: -1;
+            animation: blobPulse 14s infinite alternate;
+        }
+        @keyframes blobPulse {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        /* ---------- SEARCH BAR (animated) ---------- */
+        .search-section {
+            max-width: 700px;
+            margin: 2rem auto 2rem;
+            padding: 0 1.5rem;
+        }
+        .search-wrapper {
+            background: rgba(16, 24, 38, 0.5);
+            backdrop-filter: blur(16px);
+            border: 1px solid #2e5070;
+            border-radius: 60px;
+            padding: 0.5rem 1rem 0.5rem 2rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 15px 30px -15px #000000, 0 0 0 1px #2a4c70 inset;
+            transition: 0.2s;
+        }
+        .search-wrapper:focus-within {
+            border-color: #3d9eff;
+            box-shadow: 0 0 25px #0077ff, 0 0 0 1px #58aaff inset;
+        }
+        .search-wrapper i {
+            color: #89b9ff;
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+        .search-wrapper input {
+            background: transparent;
+            border: none;
+            width: 100%;
+            padding: 1rem 0;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        .search-wrapper input::placeholder {
+            color: #88a0c0;
+            font-weight: 300;
+        }
+
+        /* ---------- NOTES GRID (cards) ---------- */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            margin: 3rem 0 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(145deg, #d6e5ff, #9bc0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* card glassmorphism + neon glow */
+        .note-card {
+            background: rgba(14, 22, 36, 0.45);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(80, 160, 255, 0.2);
+            border-radius: 2.2rem;
+            padding: 2rem 1.5rem 1.8rem;
+            transition: all 0.3s cubic-bezier(0.15, 0.75, 0.45, 1);
+            box-shadow: 0 25px 40px -20px #000000, 0 0 0 1px rgba(255,255,255,0.02) inset;
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+        .note-card:hover {
+            transform: translateY(-12px) scale(1.01) rotateX(1deg) rotateY(1deg);
+            border-color: #4d9eff;
+            box-shadow: 0 30px 50px -15px #0044ff, 0 0 35px #1e90ff, 0 0 0 1px #5a9eff inset;
+            background: rgba(20, 34, 54, 0.6);
+        }
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 12px cyan);
+        }
+        .note-card h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            font-family: 'Space Grotesk', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #b2d9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .badge {
+            display: inline-block;
+            background: #123456;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            font-size: 0.85rem;
+            border: 1px solid #3a79b0;
+            margin: 0.5rem 0 0.8rem;
+            color: #b5dcff;
+        }
+        .note-card p {
+            color: #c0d0ea;
+            margin: 1rem 0 1.8rem;
+            font-size: 0.95rem;
+        }
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .download-btn {
+            background: rgba(0, 50, 90, 0.6);
+            border: 1px solid #2f74b0;
+            color: #d4ecff;
+            padding: 0.7rem 1.7rem;
+            border-radius: 3rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(5px);
+            transition: 0.2s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .download-btn i { font-size: 1rem; }
+        /* ripple effect via js (pseudo + span) */
+        .download-btn.ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 70%);
+            transform: scale(0);
+            animation: rippleAnim 0.6s ease-out;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to { transform: scale(6); opacity: 0; }
+        }
+        .download-btn:hover {
+            background: #004a88;
+            border-color: #60a9ff;
+            box-shadow: 0 0 24px #0077ff;
+        }
+
+        /* ---------- FOOTER (socials + about) ---------- */
+        .footer {
+            margin-top: 5rem;
+            background: rgba(5, 10, 20, 0.5);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #2d4f7c;
+            padding: 3rem 2rem;
+        }
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+        .footer-about {
+            max-width: 500px;
+            color: #b0c8f0;
+        }
+        .footer-about strong {
+            color: white;
+        }
+        .social-icons {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 2.2rem;
+        }
+        .social-icons a {
+            color: #b0d0ff;
+            transition: 0.2s;
+        }
+        .social-icons a:hover {
+            color: white;
+            transform: translateY(-8px);
+            text-shadow: 0 0 25px #0088ff;
+        }
+
+        /* ---------- SCROLL REVEAL (intersection) ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 800px) {
+            .nav-container { padding: 0.8rem 1rem; }
+            .logo-area { font-size: 1.2rem; }
+            .portfolio-btn span { display: none; }
+            .footer-content { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 500px) {
+            .float-back { bottom: 20px; left: 15px; }
+            .float-top { bottom: 20px; right: 15px; }
+            .neo-btn { padding: 10px 16px; }
+        }
+
+        /* entrance animation for cards after load (lazy) */
+        .note-card {
+            animation: cardGlowIn 0.7s ease-out;
+        }
+        @keyframes cardGlowIn {
+            0% { opacity: 0; transform: scale(0.95); box-shadow: 0 0 0px transparent; }
+            70% { opacity: 0.9; transform: scale(1.01); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADING OVERLAY (animated entrance) -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- FIXED FLOATING BACK TO PORTFOLIO (LEFT) + SCROLL TOP (RIGHT) -->
+    <div class="float-back">
+        <a href="https://codewithsagor.vercel.app/" class="neo-btn" id="backToPortfolioBtn"><i class="fa-solid fa-arrow-left"></i> <span>Back to CWS</span></a>
+    </div>
+    <div class="float-top">
+        <button class="neo-btn" id="scrollTopBtn"><i class="fa-solid fa-arrow-up"></i> <span>Top</span></button>
+    </div>
+
+    <!-- STICKY NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-area">
+                <i class="fa-solid fa-code logo-icon"></i> 
+                <span>Code With Sagor – Notes App</span>
+            </div>
+            <a href="https://codewithsagor.vercel.app/" class="portfolio-btn" id="navbarBackBtn"><i class="fa-solid fa-arrow-left"></i> <span>Back to Portfolio</span></a>
+        </div>
+    </nav>
+
+    <!-- HERO DASHBOARD with particles -->
+    <section class="hero">
+        <div class="particle-blob"></div>
+        <div class="hero-content reveal">
+            <h1>Download Clean & Structured Programming Notes</h1>
+            <p>Chapter-wise notes, crafted for fast learning and deep understanding.</p>
+        </div>
+    </section>
+
+    <!-- ANIMATED SEARCH FILTER -->
+    <div class="search-section reveal">
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Filter notes (e.g. Python, React... )">
+        </div>
+    </div>
+
+    <!-- NOTES EXPLORER MAIN GRID -->
+    <div class="container" id="notes-section">
+        <h2 class="section-title reveal">📘 notes explorer</h2>
+        <div class="notes-grid" id="notesGrid">
+            <!-- card data will be populated by JS, but we include static markup for clarity -->
+        </div>
+    </div>
+
+    <!-- FOOTER (social only + about) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-about">
+                <p><strong>Code With Sagor</strong> is a personal learning platform focused on sharing high quality programming notes and tutorials for beginners and developers.</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // ---------- LOADING OVERLAY ----------
+            const overlay = document.getElementById('loading-overlay');
+            window.addEventListener('load', () => {
+                overlay.style.opacity = '0';
+                overlay.style.visibility = 'hidden';
+                // remove from DOM after transition
+                setTimeout(() => overlay.remove(), 1000);
+            });
+
+            // ---------- NOTES DATA (chapters badge) ----------
+            const notesData = [
+                { icon: 'fa-brands fa-python', title: 'Python Notes', desc: 'From basics to OOP, modules, and automation. 12 chapters.', badge: '12 chapters' },
+                { icon: 'fa-brands fa-js', title: 'JavaScript Notes', desc: 'ES6+, DOM, async, closures. 10 in-depth chapters.', badge: '10 chapters' },
+                { icon: 'fa-brands fa-html5', title: 'HTML & CSS Notes', desc: 'Semantic HTML, flex/grid, animations, responsive. 8 chapters.', badge: '8 chapters' },
+                { icon: 'fa-brands fa-react', title: 'React Notes', desc: 'Hooks, context, router, advanced patterns. 9 chapters.', badge: '9 chapters' },
+                { icon: 'fa-solid fa-diagram-project', title: 'DSA Notes', desc: 'Arrays, trees, graphs, DP – clean explanations. 15 chapters.', badge: '15 chapters' },
+                { icon: 'fa-solid fa-database', title: 'SQL Notes', desc: 'Queries, joins, indexing, and optimization. 7 chapters.', badge: '7 chapters' }
+            ];
+
+            const grid = document.getElementById('notesGrid');
+            function renderCards(filter = '') {
+                const filterLower = filter.toLowerCase();
+                const filtered = notesData.filter(n => 
+                    n.title.toLowerCase().includes(filterLower) || n.desc.toLowerCase().includes(filterLower)
+                );
+                grid.innerHTML = filtered.map(n => `
+                    <div class="note-card reveal">
+                        <div class="card-icon"><i class="${n.icon}"></i></div>
+                        <h3>${n.title}</h3>
+                        <span class="badge"><i class="fa-regular fa-file-lines"></i> ${n.badge}</span>
+                        <p>${n.desc}</p>
+                        <div class="card-footer">
+                            <a href="#" class="download-btn ripple" data-ripple><i class="fa-solid fa-download"></i> Download Notes</a>
+                        </div>
+                    </div>
+                `).join('');
+                // re-run reveal for new cards? observer will handle, but force class addition after small delay
+                setTimeout(() => {
+                    document.querySelectorAll('.reveal').forEach(el => {
+                        if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+                    });
+                }, 100);
+                attachRippleEvents(); // reattach ripple
+            }
+
+            // initial render
+            renderCards();
+
+            // search filter
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                renderCards(e.target.value);
+            });
+
+            // ---------- SCROLL REVEAL (intersection observer) ----------
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+            // ---------- RIPPLE MICRO-INTERACTION ----------
+            function attachRippleEvents() {
+                document.querySelectorAll('.download-btn.ripple').forEach(btn => {
+                    btn.removeEventListener('click', rippleHandler); // avoid duplicate
+                    btn.addEventListener('click', rippleHandler);
+                });
+            }
+            function rippleHandler(e) {
+                e.preventDefault(); // prevent link for demo, but we want google drive later -> simulate
+                alert('🔗 Google Drive link will be dynamically added later. (you can replace href)');
+                const btn = e.currentTarget;
+                const rect = btn.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height) * 2;
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple-effect';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+                btn.style.position = 'relative';
+                btn.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+
+            // back to portfolio buttons (all point to main site)
+            const portfolioBtns = document.querySelectorAll('#backToPortfolioBtn, #navbarBackBtn');
+            portfolioBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('🌐 Redirect to main portfolio "Code With Sagor" ');
+                    window.location.href = 'https://codewithsagor.vercel.app/'; 
+                });
+            });
+
+            // scroll to top
+            document.getElementById('scrollTopBtn').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // micro interaction: hover parallax tilt enhanced by css, but we can add small mousemove?
+            // optional: but we keep pure css for perf.
+
+            // initial active reveal for elements visible
+            window.dispatchEvent(new Event('scroll'));
+        })();
+    </script>
+    <!-- ensure ripple class is attached -->
+    <noscript>JavaScript not enabled – but styles work</noscript>
+</body>
+</html>
